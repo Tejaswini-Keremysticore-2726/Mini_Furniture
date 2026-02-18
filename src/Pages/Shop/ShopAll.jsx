@@ -2,17 +2,11 @@
 import { product } from "../../Data/product";
 import ProductCard from "../../Component/ProductCard";
 import { useOutletContext } from "react-router-dom";
-
+import SidebarFil from "../../Component/SidebarFil";
 
 function ShopAll({ addToCart }) {
-  // const [sort, setSort] = useState(none);
-  // const memory = useMemo(() => {
-  //   const arr = [...product];
-  // });
+  
 
-  // if(sort == "lowtohigh"){
-
-  // }
   const { searchQuery } = useOutletContext();
 
   const q = (searchQuery || "").trim().toLowerCase();
@@ -28,8 +22,10 @@ function ShopAll({ addToCart }) {
       <div className="grid grid-cols-3 gap-4">
         {listToShow.map((item) => (
           <ProductCard key={item.id} product={item} addToCart={addToCart} />
+
         ))}
       </div>
+     
 
       {/* optional: if you want */}
       {q && listToShow.length === 0 && (

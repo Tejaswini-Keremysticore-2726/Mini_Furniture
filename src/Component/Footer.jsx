@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <>
-      <div className="w-full bg-black text-amber-600 ">
+      <div className="w-full bg-black text-amber-600 mt-10 ">
         {/* Grid Section */}
         <div className="grid grid-cols-3 p-5 gap-5">
           {/* Logo Section */}

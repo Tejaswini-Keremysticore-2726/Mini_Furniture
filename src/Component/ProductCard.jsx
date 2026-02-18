@@ -11,11 +11,11 @@ export default function ProductCard({ product, addToCart }) {
     <>
       <div className="rounded-3xl border border-gray-300 bg-white p-4 shadow-sm hover:shadow-md transition">
         {/* Image */}
-        <div className="relative overflow-hidden rounded-2xl bg-gray-100">
+        <div className="relative overflow-hidden rounded-2xl bg-gray-100 ">
           <img
             src={product.image}
             alt={product.name}
-            className="relative overflow-hidden rounded-2xl bg-gray-100 aspect-[4/3]"
+            className="relative rounded-2xl bg-gray-100 aspect-[4/3] transition-transform duration-500 hover:scale-110"
             onError={(e) => {
               e.currentTarget.src =
                 "https://placehold.co/600x400?text=Furniture";
@@ -45,7 +45,7 @@ export default function ProductCard({ product, addToCart }) {
 
           {/* View button only clickable */}
           <button
-            className="rounded-2xl px-4 py-2 text-sm font-medium  font-bold hover:bg-amber-950 hover:font-semibold border border-gray-200  hover:text-white transition" 
+            className="rounded-2xl px-4 py-2 text-sm font-medium  font-bold hover:bg-amber-950 hover:font-semibold border border-gray-200  hover:text-white transition"
             onClick={() => setView(product) || setSelect(true)}
           >
             View

@@ -71,9 +71,7 @@ function View({ select, setSelect, view }) {
 
                 {/* Footer buttons */}
                 <div className="mt-4 flex gap-2">
-                  <button className="flex-1 rounded-2xl bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90">
-                    Add to Cart
-                  </button>
+                 
                   <button
                     onClick={() => setSelect(false)}
                     className="rounded-2xl border px-4 py-2 text-sm font-medium hover:bg-gray-50"

@@ -16,8 +16,6 @@ function SidebarFil() {
             />
           </div>
         </div>
-
-        <h1 className="font-semibold text-[20px]">Filters</h1>
       </div>
     </>
   );

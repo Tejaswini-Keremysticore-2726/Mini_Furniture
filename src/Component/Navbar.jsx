@@ -141,6 +141,19 @@ function Navbar({ cart = [], searchQuery, setSearchQuery }) {
               Shop &nbsp;
               <FontAwesomeIcon icon={faAngleDown} className="text-sm" />
             </button>
+            {open && (
+              <div
+                className="fixed inset-0  flex items-center justify-center  "
+                onClick={() => setOpen(false)}
+              >
+                {/* <div
+                  className="bg-white p-8 rounded-xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                 
+                </div> */}
+              </div>
+            )}
 
             {open && (
               <div className="absolute left-0 top-full mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-md z-50">
