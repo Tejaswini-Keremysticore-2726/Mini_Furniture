@@ -1,5 +1,3 @@
-
-
 import React from "react";
 
 function SidebarFil({ sortOption, setSortOption }) {
@@ -23,6 +21,18 @@ function SidebarFil({ sortOption, setSortOption }) {
         <option value="none">Default</option>
         <option value="low">Low to High</option>
         <option value="high">High to Low</option>
+        <option value="Oak Wood"> Oak Wood</option>
+        <option value="Engineered Wood"> Engineered Wood</option>
+        <option value="MDF"> MDF</option>
+        <option value="Fabric">Fabric</option>
+        <option value="Metal">Metal</option>
+        <option value="Pine Wood">Pine Wood</option>
+        <option value="Plywood">Plywood</option>
+        <option value="Leatherette">Leatherette</option>
+        <option value="Teak Wood">Teak Wood</option>
+        <option value="Plastic">Plastic</option>
+        <option value="Polyester">Polyester</option>
+        <option value="wooden">wooden</option>
       </select>
     </div>
   );
