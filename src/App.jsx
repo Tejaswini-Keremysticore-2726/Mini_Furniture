@@ -80,6 +80,8 @@ function App() {
 
           {/* ✅ Cart page route */}
           <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
+          {/* <Route path="/" element={<Layout cart={cart} />}/> */}
+
         </Route>
       </Routes>
     </>
