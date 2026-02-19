@@ -4,41 +4,28 @@ import ProductCard from "../../Component/ProductCard";
 import { useOutletContext } from "react-router-dom";
 
 function ShopLiving({ addToCart }) {
-  const { searchQuery, sortOption } = useOutletContext();
+  const { searchQuery, sortOption, selectedMaterial } = useOutletContext();
   const q = (searchQuery || "").trim().toLowerCase();
 
   const filteredprod = product
     .filter((item) => item.category.toLowerCase() === "living")
     .filter((item) => item.name.toLowerCase().includes(q));
 
-  const materials = [
-    "Oak Wood",
-    "Engineered Wood",
-    "MDF",
-    "Fabric",
-    "Metal",
-    "Plywood",
-    "Pine Wood",
-    "Leatherette",
-    "Teak Wood",
-    "Plastic",
-    "Polyester",
-    "wooden",
-  ];
   const finallist = useMemo(() => {
     let arr = [...filteredprod];
     if (sortOption === "low") {
       arr.sort((a, b) => Number(a.price) - Number(b.price));
     } else if (sortOption === "high") {
       arr.sort((a, b) => Number(b.price) - Number(a.price));
-    } else if (materials.includes(sortOption)) {
-      // ✅ correct way to check multiple values
+    }
+    if (selectedMaterial && selectedMaterial !== "All") {
       arr = arr.filter(
-        (item) => item.material.toLowerCase() === sortOption.toLowerCase(),
+        (item) =>
+          item.material.toLowerCase() === selectedMaterial.toLowerCase(),
       );
     }
     return arr;
-  }, [filteredprod, sortOption]);
+  }, [filteredprod, sortOption, selectedMaterial]);
   return (
     <>
       <div>

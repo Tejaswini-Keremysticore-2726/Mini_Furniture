@@ -4,44 +4,30 @@ import ProductCard from "../../Component/ProductCard";
 import { useOutletContext } from "react-router-dom";
 
 export default function ShopOutdoor({ addToCart }) {
-  const { searchQuery, sortOption } = useOutletContext();
+  const { searchQuery, sortOption, selectedMaterial } = useOutletContext();
   const q = (searchQuery || "").trim().toLowerCase();
 
   const filterdpro = product
     .filter((item) => item.category.toLowerCase() === "outdoor")
     .filter((item) => item.name.toLowerCase().includes(q));
-  const materials = [
-    "Oak Wood",
-    "Engineered Wood",
-    "MDF",
-    "Fabric",
-    "Metal",
-    "Plywood",
-    "Pine Wood",
-    "Leatherette",
-    "Teak Wood",
-    "Plastic",
-    "Polyester",
-    "wooden",
-  ];
+
   const finallist = useMemo(() => {
     let arr = [...filterdpro];
+
     if (sortOption === "low") {
       arr.sort((a, b) => Number(a.price) - Number(b.price));
     } else if (sortOption === "high") {
-      arr.sort((a, b) => Number(b.price) - a.price);
-    } else if (materials.includes(sortOption)) {
-      // ✅ correct way to check multiple values
+      arr.sort((a, b) => Number(b.price) - Number(a.price));
+    }
+    if (selectedMaterial && selectedMaterial !== "All") {
       arr = arr.filter(
-        (item) => item.material.toLowerCase() === sortOption.toLowerCase(),
+        (item) =>
+          item.material.toLowerCase() === selectedMaterial.toLowerCase(),
       );
     }
     return arr;
-  }, [filterdpro, sortOption]);
+  }, [filterdpro, sortOption, selectedMaterial]);
 
-  // const filoutdoor = product.filter(
-  //   (O) => O.category.toLowerCase() === "outdoor",
-  // );
   return (
     <div>
       <h1 className="font-bold text-3xl p-3 mb-5 py-3">OUTDOOR FURNITURE</h1>

@@ -5,29 +5,14 @@ import { useOutletContext } from "react-router-dom";
 import { useMemo } from "react";
 
 function ShopBedroom({ addToCart }) {
-  const { searchQuery, sortOption } = useOutletContext(); // get sortoption searchquery from layout
+  const { searchQuery, sortOption, selectedMaterial } = useOutletContext(); // from layout
 
   const q = (searchQuery || "").trim().toLowerCase();
 
-  // Filter bedroom category + search in ONE chain
   const filteredProducts = product
     .filter((item) => item.category.toLowerCase().includes("bedroom"))
     .filter((item) => item.name.toLowerCase().includes(q));
 
-  const materials = [
-    "Oak Wood",
-    "Engineered Wood",
-    "MDF",
-    "Fabric",
-    "Metal",
-    "Plywood",
-    "Pine Wood",
-    "Leatherette",
-    "Teak Wood",
-    "Plastic",
-    "Polyester",
-    "wooden",
-  ];
 
   const finallist = useMemo(() => {
     let arr = [...filteredProducts];
@@ -36,14 +21,15 @@ function ShopBedroom({ addToCart }) {
       arr.sort((a, b) => Number(a.price) - Number(b.price));
     } else if (sortOption === "high") {
       arr.sort((a, b) => Number(b.price) - Number(a.price));
-    } else if (materials.includes(sortOption)) {
-      // ✅ correct way to check multiple values
+    } 
+    if (selectedMaterial && selectedMaterial !== "All") {
       arr = arr.filter(
-        (item) => item.material.toLowerCase() === sortOption.toLowerCase(),
+        (item) =>
+          item.material.toLowerCase() === selectedMaterial.toLowerCase(),
       );
     }
     return arr;
-  }, [filteredProducts, sortOption]);
+  }, [filteredProducts, sortOption, selectedMaterial]);
 
   return (
     <div>

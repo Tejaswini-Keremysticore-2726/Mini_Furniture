@@ -4,44 +4,35 @@ import ProductCard from "../../Component/ProductCard";
 import { useOutletContext } from "react-router-dom";
 
 function ShopAll({ addToCart }) {
-  const { searchQuery, sortOption } = useOutletContext(); // ✅ get sortOption from Layout
+  const { searchQuery, sortOption, selectedMaterial } = useOutletContext(); 
 
   const q = (searchQuery || "").trim().toLowerCase();
 
   const filteredList = q
     ? product.filter((item) => item.name.toLowerCase().includes(q))
     : product;
-  const materials = [
-    "Oak Wood",
-    "Engineered Wood",
-    "MDF",
-    "Fabric",
-    "Metal",
-    "Plywood",
-    "Pine Wood",
-    "Leatherette",
-    "Teak Wood",
-    "Plastic",
-    "Polyester",
-    "wooden",
-  ];
 
   const finalListToShow = useMemo(() => {
     let arr = [...filteredList];
 
+    // price sorting
     if (sortOption === "low") {
       arr.sort((a, b) => Number(a.price) - Number(b.price));
     } else if (sortOption === "high") {
       arr.sort((a, b) => Number(b.price) - Number(a.price));
-    } else if (materials.includes(sortOption)) {
-      // ✅ correct way to check multiple values
+    }
+
+    // material filter
+    if (selectedMaterial && selectedMaterial !== "All") {
       arr = arr.filter(
-        (item) => item.material.toLowerCase() === sortOption.toLowerCase(),
+        (item) =>
+          item.material.toLowerCase() === selectedMaterial.toLowerCase(),
       );
     }
 
-    return arr; // ✅ return inside useMemo
-  }, [filteredList, sortOption]);
+    return arr;
+  }, [filteredList, sortOption, selectedMaterial]); // ← selectedMaterial add
+
   return (
     <div>
       <h1 className="font-bold text-3xl py-3 p-3 mb-5">ALL PRODUCTS</h1>

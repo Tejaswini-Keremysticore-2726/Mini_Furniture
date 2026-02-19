@@ -1,8 +1,16 @@
 import React from "react";
+import { product } from "../Data/product";
 
-function SidebarFil({ sortOption, setSortOption }) {
+const allMaterials = ["All", ...new Set(product.map((item) => item.material))];
+
+function SidebarFil({
+  sortOption,
+  setSortOption,
+  selectedMaterial,
+  setSelectedMaterial,
+}) {
   return (
-    <div className="w-65 h-screen border-r border-gray-200 bg-white p-4">
+    <div className="w-65 border-r border-gray-200 bg-white p-4 overflow-y-auto min-h-screen">
       <div className="flex items-center mb-6">
         <h2 className="font-bold text-amber-800 text-2xl">Woodzen</h2>
         <img
@@ -12,27 +20,30 @@ function SidebarFil({ sortOption, setSortOption }) {
         />
       </div>
 
+      {/* price */}
       <p className="font-semibold mb-2">Sort by Price</p>
       <select
         value={sortOption}
         onChange={(e) => setSortOption(e.target.value)}
-        className="w-full border border-gray-300 rounded px-3 py-2"
+        className="w-full border border-gray-300 rounded px-3 py-2 mb-6"
       >
         <option value="none">Default</option>
         <option value="low">Low to High</option>
         <option value="high">High to Low</option>
-        <option value="Oak Wood"> Oak Wood</option>
-        <option value="Engineered Wood"> Engineered Wood</option>
-        <option value="MDF"> MDF</option>
-        <option value="Fabric">Fabric</option>
-        <option value="Metal">Metal</option>
-        <option value="Pine Wood">Pine Wood</option>
-        <option value="Plywood">Plywood</option>
-        <option value="Leatherette">Leatherette</option>
-        <option value="Teak Wood">Teak Wood</option>
-        <option value="Plastic">Plastic</option>
-        <option value="Polyester">Polyester</option>
-        <option value="wooden">wooden</option>
+      </select>
+
+      {/* material */}
+      <p className="font-semibold mb-2">Sort by Material</p>
+      <select
+        value={selectedMaterial}
+        onChange={(e) => setSelectedMaterial(e.target.value)}
+        className="w-full border border-gray-300 rounded px-3 py-2"
+      >
+        {allMaterials.map((mat) => (
+          <option key={mat} value={mat}>
+            {mat}
+          </option>
+        ))}
       </select>
     </div>
   );
