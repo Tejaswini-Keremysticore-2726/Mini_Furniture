@@ -15,6 +15,7 @@ function ShopBedroom({ addToCart }) {
 
   return (
     <div>
+      
       <h1 className="font-bold text-3xl py-3 p-3 mb-5">BEDROOM FURNITURE</h1>
 
       <div className="grid grid-cols-3 gap-3">
