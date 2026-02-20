@@ -8,8 +8,9 @@ import ShopOutdoor from "./Pages/Shop/ShopOutdoor";
 import ShopKids from "./Pages/Shop/ShopKids";
 import About from "./Pages/About";
 import Cart from "./Component/Cart";
+import PaymentDetails from "./Pages/PaymentDetails";
 import { useState, useEffect } from "react";
-
+import OrderPay from "./Pages/OrderPay";
 import "./App.css";
 
 function App() {
@@ -23,7 +24,6 @@ function App() {
   }, [cart]);
 
   const addToCart = (product) => {
-    
     // prev cart's array
     setCart((prev) => {
       const found = prev.find((item) => item.id === product.id);
@@ -80,8 +80,12 @@ function App() {
 
           {/* ✅ Cart page route */}
           <Route path="cart" element={<Cart cart={cart} setCart={setCart} />} />
-          {/* <Route path="/" element={<Layout cart={cart} />}/> */}
-
+          <Route path="/payment" element={<PaymentDetails />} />
+          {/* <Route path="/order" element={<OrderPay />} /> */}
+          <Route
+            path="/order"
+            element={<OrderPay cart={cart} setCart={setCart} />}
+          />
         </Route>
       </Routes>
     </>

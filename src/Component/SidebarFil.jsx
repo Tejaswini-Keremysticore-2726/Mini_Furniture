@@ -10,7 +10,7 @@ function SidebarFil({
   setSelectedMaterial,
 }) {
   return (
-    <div className="w-65 border-r border-gray-200 bg-white p-4 overflow-y-auto min-h-screen">
+    <div className="w-65 border-r border-gray-200 bg-white p-4 min-h-screen">
       <div className="flex items-center mb-6">
         <h2 className="font-bold text-amber-800 text-2xl">Woodzen</h2>
         <img
