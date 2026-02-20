@@ -19,6 +19,23 @@ function PaymentDetails() {
   const handledata = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    if (name === "contact" || name === "pin") {
+      let numbersOnly = "";
+
+      // only digits allow (no regex)
+      for (let i = 0; i < value.length; i++) {
+        if (value[i] >= "0" && value[i] <= "9") {
+          numbersOnly += value[i];
+        }
+      }
+
+      // limit apply
+      if (name === "contact") numbersOnly = numbersOnly.slice(0, 10);
+      if (name === "pin") numbersOnly = numbersOnly.slice(0, 6);
+
+      setpay((prev) => ({ ...prev, [name]: numbersOnly }));
+      return;
+    }
     setpay((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -151,9 +168,9 @@ function PaymentDetails() {
                     Pincode
                   </label>
                   <input
-                    className="w-full border border-gray-300 rounded-xl p-3 text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition"
-                    type="number"
-                    maxLength="6"
+                    className="w-full border border-gray-300 rounded-xl p-3 ..."
+                    type="text"
+                    inputMode="numeric"
                     placeholder="eg : 980012"
                     name="pin"
                     value={pay.pin}

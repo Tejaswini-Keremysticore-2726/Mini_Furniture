@@ -17,7 +17,7 @@ function OrderPay({ cart, setCart }) {
   return (
     <div className="p-10">
       <h1 className="text-2xl font-bold mb-4 text-green-600">
-        🎉 Order Placed Successfully!
+        Thank you for your Time! <br /> Your Order Placed successfully🎊
       </h1>
 
       <div className="mb-4">
@@ -42,8 +42,3 @@ function OrderPay({ cart, setCart }) {
 }
 
 export default OrderPay;
-
-
-
-
-
